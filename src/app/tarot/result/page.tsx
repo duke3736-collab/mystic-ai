@@ -241,7 +241,7 @@ function TarotResultContent() {
 
         {/* AdSense Banner */}
         <div className="mt-8">
-          <AdBanner dataAdSlot="TAROT_RESULT_SLOT_ID" />
+          <AdBanner dataAdSlot="1867596538" />
         </div>
 
         {/* Action Buttons */}

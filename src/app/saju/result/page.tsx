@@ -308,7 +308,7 @@ function SajuResultContent() {
 
         {/* AdSense Banner */}
         <div className="mt-8">
-          <AdBanner dataAdSlot="SAJU_RESULT_SLOT_ID" />
+          <AdBanner dataAdSlot="1867596538" />
         </div>
 
         {/* Action Buttons */}
