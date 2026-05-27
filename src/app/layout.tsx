@@ -19,13 +19,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mystic AI - 별빛이 들려주는 당신의 운명",
-  description: "타로카드, 평생 사주, 그리고 오늘의 운세를 AI가 실시간으로 분석해 드립니다. 나만의 운명 카드를 뽑아보세요.",
-  keywords: ["운세", "무료운세", "타로", "사주", "오늘의운세", "AI운세", "사주팔자", "점성술", "별자리운세", "명리학", "신년운세"],
+  title: "Mystic AI - AI Tarot, Saju & Horoscope | 무료 타로 및 사주 운세",
+  description: "타로카드, 평생 사주, 오늘의 운세를 AI가 분석해 드립니다. Get your free personalized AI Tarot reading, Saju (Four Pillars of Destiny), and Daily Horoscope.",
+  keywords: [
+    "운세", "무료운세", "타로", "사주", "오늘의운세", "AI운세", "사주팔자", "점성술", "별자리운세", "명리학", "오하아사",
+    "free tarot reading", "AI tarot", "saju", "four pillars of destiny", "daily horoscope", "astrology", "fortune telling", "mystic ai", "zodiac signs"
+  ],
   manifest: "/manifest.json",
   openGraph: {
-    title: "Mystic AI - 별빛이 들려주는 당신의 운명",
-    description: "타로카드, 평생 사주, 그리고 오늘의 운세를 AI가 실시간으로 분석해 드립니다.",
+    title: "Mystic AI - AI Tarot, Saju & Horoscope",
+    description: "타로카드, 사주, 오늘의 운세를 AI가 실시간으로 분석해 드립니다. Free AI Tarot & Saju Horoscope.",
     url: "https://mystic-ai.vercel.app",
     siteName: "Mystic AI",
     images: [
@@ -37,12 +40,13 @@ export const metadata: Metadata = {
       },
     ],
     locale: "ko_KR",
+    alternateLocale: ["en_US"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mystic AI - 별빛이 들려주는 당신의 운명",
-    description: "타로카드, 평생 사주, 그리고 오늘의 운세를 AI가 실시간으로 분석해 드립니다.",
+    title: "Mystic AI - AI Tarot, Saju & Horoscope",
+    description: "타로카드, 사주, 오늘의 운세를 AI가 실시간으로 분석해 드립니다. Free AI Tarot & Saju Horoscope.",
     images: ["https://mystic-ai.vercel.app/og-image.png"],
   },
 };

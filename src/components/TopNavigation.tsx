@@ -30,7 +30,7 @@ export function TopNavigation() {
   };
 
   return (
-    <div className="fixed top-6 right-6 z-50 flex items-center gap-3">
+    <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2 sm:gap-3">
       <button
         onClick={toggleMusic}
         className="p-2 rounded-full bg-slate-900/50 backdrop-blur-md border border-slate-700/50 text-indigo-300 hover:text-white transition-colors"
