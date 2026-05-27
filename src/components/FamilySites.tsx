@@ -24,15 +24,15 @@ export default function FamilySites() {
       icon: "📊",
       color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
     },
-    {
-      nameKo: "커넥트 AI",
-      nameEn: "Connect AI",
-      descKo: "당신만을 위한 AI 비서 서비스",
-      descEn: "Your personal AI assistant service",
-      url: "https://ai.weknews.com", // Adjust URL as needed
-      icon: "🤖",
-      color: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-    }
+    // {
+    //   nameKo: "커넥트 AI",
+    //   nameEn: "Connect AI",
+    //   descKo: "당신만을 위한 AI 비서 서비스",
+    //   descEn: "Your personal AI assistant service",
+    //   url: "https://ai.weknews.com",
+    //   icon: "🤖",
+    //   color: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+    // }
   ];
 
   return (
