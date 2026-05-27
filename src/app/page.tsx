@@ -21,12 +21,13 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="w-full min-h-[85dvh] flex flex-col items-center justify-center max-w-2xl mx-auto text-center z-10 space-y-6 px-4"
-      >
+      <div className="w-full flex flex-col justify-end min-h-[88dvh] pb-2">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="w-full flex flex-col items-center max-w-2xl mx-auto text-center z-10 space-y-6 px-4"
+        >
         <motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -79,7 +80,8 @@ export default function Home() {
             <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
           </Link>
         </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* Family Services Cross-Linking */}
       <motion.div
