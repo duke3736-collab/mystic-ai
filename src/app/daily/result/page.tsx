@@ -8,6 +8,7 @@ import { useEffect, useRef, useState, Suspense } from "react";
 import html2canvas from "html2canvas";
 import { AdBanner } from "@/components/AdBanner";
 import ShareButtons from "@/components/ShareButtons";
+import CoupangAd from "@/components/CoupangAd";
 
 const ZODIAC_SIGNS: Record<string, { icon: string, nameKo: string, nameEn: string, date: string }> = {
   "aries": { icon: "♈", nameKo: "양자리", nameEn: "Aries", date: "03.21 - 04.19" },
@@ -236,6 +237,9 @@ function DailyResultContent() {
             kakaoAppKey={process.env.NEXT_PUBLIC_KAKAO_APP_KEY || ""}
           />
         </div>
+
+        {/* Coupang Ad */}
+        <CoupangAd type="daily" />
 
         <div className="mt-16 bg-slate-900/40 border border-indigo-500/20 rounded-2xl p-6">
           <div className="flex items-center gap-3 mb-6">

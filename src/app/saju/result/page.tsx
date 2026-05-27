@@ -9,6 +9,7 @@ import confetti from "canvas-confetti";
 import html2canvas from "html2canvas";
 import { AdBanner } from "@/components/AdBanner";
 import ShareButtons from "@/components/ShareButtons";
+import CoupangAd from "@/components/CoupangAd";
 
 function SajuResultContent() {
   const { t, language } = useLanguage();
@@ -338,6 +339,9 @@ function SajuResultContent() {
             kakaoAppKey={process.env.NEXT_PUBLIC_KAKAO_APP_KEY || ""}
           />
         </div>
+
+        {/* Coupang Ad */}
+        <CoupangAd type="saju" />
 
         {/* Interactive Chat Session */}
         <div className="mt-16 bg-slate-900/40 border border-indigo-500/20 rounded-2xl p-6">

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Sparkles, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import AdSense from "@/components/AdSense";
+import CoupangAd from "@/components/CoupangAd";
 
 interface RankingItem {
   id: string;
@@ -221,6 +222,11 @@ export default function OhaasaPage() {
                     {advice}
                   </p>
                 )}
+              </div>
+
+              {/* Coupang Ad */}
+              <div className="mt-4">
+                <CoupangAd type="daily" />
               </div>
             </motion.div>
           </div>
