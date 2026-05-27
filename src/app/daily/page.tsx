@@ -96,10 +96,10 @@ export default function DailyPage() {
           <AnimatePresence>
             {selectedSign && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                className="fixed bottom-24 sm:bottom-12 left-0 right-0 px-4 z-[100] pointer-events-none flex justify-center"
+                exit={{ opacity: 0, y: 100 }}
+                className="fixed bottom-6 sm:bottom-10 left-0 right-0 px-4 z-50 pointer-events-none flex justify-center"
               >
                 <div className="w-full max-w-sm pointer-events-auto">
                   <button
