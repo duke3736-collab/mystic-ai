@@ -45,34 +45,34 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="pt-8 flex flex-wrap items-center justify-center gap-4">
           <Link href="/daily" className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full font-bold text-white text-lg shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_-15px_rgba(59,130,246,0.7)] transition-all duration-300 hover:scale-105">
-            <span className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+            <span className="flex items-center gap-2 whitespace-nowrap">
+              <Sparkles className="w-5 h-5 shrink-0 group-hover:rotate-12 transition-transform" />
               {t("nav.daily")}
             </span>
             <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
           </Link>
           
           <Link href="/tarot" className="group relative px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full font-bold text-white text-lg shadow-[0_0_40px_-10px_rgba(99,102,241,0.5)] hover:shadow-[0_0_60px_-15px_rgba(99,102,241,0.7)] transition-all duration-300 hover:scale-105">
-            <span className="flex items-center gap-2">
-              <Stars className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+            <span className="flex items-center gap-2 whitespace-nowrap">
+              <Stars className="w-5 h-5 shrink-0 group-hover:rotate-12 transition-transform" />
               {t("nav.tarot")}
             </span>
             <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
           </Link>
 
           <Link href="/ohaasa" className="group relative px-8 py-4 bg-gradient-to-r from-fuchsia-500 to-pink-600 rounded-full font-bold text-white text-lg shadow-[0_0_40px_-10px_rgba(217,70,239,0.5)] hover:shadow-[0_0_60px_-15px_rgba(217,70,239,0.7)] transition-all duration-300 hover:scale-105">
-            <span className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+            <span className="flex items-center gap-2 whitespace-nowrap">
+              <Sparkles className="w-5 h-5 shrink-0 group-hover:rotate-12 transition-transform" />
               오하아사 운세
             </span>
             <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
           </Link>
 
           <Link href="/saju" className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full font-bold text-white text-lg shadow-[0_0_40px_-10px_rgba(16,185,129,0.5)] hover:shadow-[0_0_60px_-15px_rgba(16,185,129,0.7)] transition-all duration-300 hover:scale-105">
-            <span className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+            <span className="flex items-center gap-2 whitespace-nowrap">
+              <Sparkles className="w-5 h-5 shrink-0 group-hover:rotate-12 transition-transform" />
               {t("nav.saju")}
             </span>
             <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
