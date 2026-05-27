@@ -159,7 +159,7 @@ export default function TarotPage() {
                   {isSelected && (
                     <>
                       <Image 
-                        src={`/images/tarot/front_${selectionOrder + 1}.png`} 
+                        src={`/images/tarot/front_${(selectionOrder % 3) + 1}.png`} 
                         alt="Tarot Card Front" 
                         fill 
                         className="object-cover"
