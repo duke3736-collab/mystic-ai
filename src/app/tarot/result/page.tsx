@@ -213,9 +213,13 @@ function TarotResultContent() {
                 <div className="h-4 bg-slate-700/50 rounded w-5/6 mx-auto"></div>
                 <div className="h-4 bg-slate-700/50 rounded w-2/3 mx-auto"></div>
               </div>
+            ) : resultText ? (
+              <p className="text-base md:text-xl leading-relaxed text-white font-medium break-keep drop-shadow-md">
+                {resultText}
+              </p>
             ) : (
-              <p className="text-lg md:text-2xl leading-relaxed text-white font-medium break-keep drop-shadow-md">
-                "{resultText}"
+              <p className="text-base text-red-300">
+                {language === "ko" ? "운명을 읽는 중 오류가 발생했습니다. 다시 시도해주세요." : "An error occurred. Please try again."}
               </p>
             )}
           </div>

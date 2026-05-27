@@ -3,8 +3,8 @@ import withPWAInit from "@ducanh2912/next-pwa";
 
 const withPWA = withPWAInit({
   dest: "public",
-  disable: process.env.NODE_ENV === "development",
-  register: true,
+  disable: true, // PWA 비활성화 - 서비스워커 캐시가 API 라우트 충돌 유발
+  register: false,
 });
 
 const nextConfig: NextConfig = {
