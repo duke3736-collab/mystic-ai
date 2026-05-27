@@ -226,7 +226,7 @@ export default function OhaasaPage() {
 
               {/* Coupang Ad */}
               <div className="mt-4">
-                <CoupangAd type="daily" />
+                <CoupangAd type="daily" compact={true} />
               </div>
             </motion.div>
           </div>

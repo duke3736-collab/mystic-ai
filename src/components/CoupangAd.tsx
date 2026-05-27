@@ -7,9 +7,10 @@ import { motion } from "framer-motion";
 
 interface CoupangAdProps {
   type: "tarot" | "saju" | "daily";
+  compact?: boolean;
 }
 
-export default function CoupangAd({ type }: CoupangAdProps) {
+export default function CoupangAd({ type, compact = false }: CoupangAdProps) {
   const { language } = useLanguage();
 
   const coupangLinks = {
@@ -75,15 +76,15 @@ export default function CoupangAd({ type }: CoupangAdProps) {
           <div className="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all" />
           <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-pink-500/10 rounded-full blur-2xl group-hover:bg-pink-500/20 transition-all" />
 
-          <div className="relative p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 z-10">
+          <div className={`relative p-6 sm:p-8 flex flex-col ${compact ? '' : 'sm:flex-row'} items-center justify-between gap-6 z-10`}>
             
             {/* Icon & Text */}
-            <div className="flex items-start gap-4">
-              <div className="hidden sm:flex flex-shrink-0 w-12 h-12 bg-slate-800 border border-slate-700 rounded-xl items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform shadow-inner">
+            <div className={`flex ${compact ? 'flex-col items-center' : 'items-start'} gap-4`}>
+              <div className={`${compact ? 'hidden' : 'hidden sm:flex'} flex-shrink-0 w-12 h-12 bg-slate-800 border border-slate-700 rounded-xl items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform shadow-inner`}>
                 <ShoppingBag className="w-6 h-6" />
               </div>
-              <div className="flex flex-col gap-1 text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-bold text-indigo-400 mb-1 tracking-wider uppercase">
+              <div className={`flex flex-col gap-1 ${compact ? 'text-center' : 'text-center sm:text-left'}`}>
+                <div className={`flex items-center justify-center ${compact ? '' : 'sm:justify-start'} gap-2 text-xs font-bold text-indigo-400 mb-1 tracking-wider uppercase`}>
                   <Sparkles className="w-3 h-3" />
                   <span>Mystic Recommendation</span>
                 </div>
@@ -98,8 +99,8 @@ export default function CoupangAd({ type }: CoupangAdProps) {
 
             {/* Action Button */}
             <div className="w-full sm:w-auto flex-shrink-0">
-              <div className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-md group-hover:shadow-indigo-500/30">
-                <span>{content.button}</span>
+              <div className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-md group-hover:shadow-indigo-500/30 whitespace-nowrap">
+                <span className="text-sm sm:text-base">{content.button}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
