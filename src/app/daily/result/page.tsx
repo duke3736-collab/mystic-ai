@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState, Suspense } from "react";
 import html2canvas from "html2canvas";
 import { AdBanner } from "@/components/AdBanner";
+import ShareButtons from "@/components/ShareButtons";
 
 const ZODIAC_SIGNS: Record<string, { icon: string, nameKo: string, nameEn: string, date: string }> = {
   "aries": { icon: "♈", nameKo: "양자리", nameEn: "Aries", date: "03.21 - 04.19" },
@@ -220,8 +221,16 @@ function DailyResultContent() {
             className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-500 hover:to-indigo-400 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:scale-105"
           >
             <Download className="w-5 h-5" />
-            {language === "ko" ? "오늘의 운세 카드 저장 & 공유" : "Save & Share Horoscope Card"}
+            {language === "ko" ? "오늘의 운세 카드 저장" : "Save Horoscope Card"}
           </button>
+        </div>
+
+        <div className="mt-8">
+          <ShareButtons 
+            title={language === "ko" ? "오늘의 별자리 운세" : "Daily Horoscope"}
+            description={resultText ? resultText.slice(0, 100) + "..." : "오늘의 운세를 확인해보세요!"}
+            kakaoAppKey={process.env.NEXT_PUBLIC_KAKAO_APP_KEY || ""}
+          />
         </div>
 
         <div className="mt-16 bg-slate-900/40 border border-indigo-500/20 rounded-2xl p-6">

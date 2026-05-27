@@ -8,6 +8,7 @@ import { useEffect, useRef, useState, Suspense } from "react";
 import confetti from "canvas-confetti";
 import html2canvas from "html2canvas";
 import { AdBanner } from "@/components/AdBanner";
+import ShareButtons from "@/components/ShareButtons";
 
 function SajuResultContent() {
   const { t, language } = useLanguage();
@@ -324,15 +325,23 @@ function SajuResultContent() {
           
           <button 
             onClick={handleDownloadImage}
-            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:scale-105"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-500 hover:to-indigo-400 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:scale-105"
           >
             <Download className="w-5 h-5" />
-            {language === "ko" ? "사주 카드 저장 & 공유" : "Save & Share Saju Card"}
+            {language === "ko" ? "사주 결과 저장" : "Save Saju Result"}
           </button>
         </div>
 
+        <div className="mt-8">
+          <ShareButtons 
+            title={language === "ko" ? "나의 사주 운명 결과" : "My Saju Destiny"}
+            description={resultText ? (resultText.total.slice(0, 50) + "...") : "사주 결과를 확인해보세요!"}
+            kakaoAppKey={process.env.NEXT_PUBLIC_KAKAO_APP_KEY || ""}
+          />
+        </div>
+
         {/* Interactive Chat Session */}
-        <div className="mt-16 bg-slate-900/40 border border-emerald-500/20 rounded-2xl p-6">
+        <div className="mt-16 bg-slate-900/40 border border-indigo-500/20 rounded-2xl p-6">
           <div className="flex items-center gap-3 mb-6">
             <MessageCircle className="w-6 h-6 text-emerald-400" />
             <h2 className="text-xl font-bold text-emerald-100">

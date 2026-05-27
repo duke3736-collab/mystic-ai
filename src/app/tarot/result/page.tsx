@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import html2canvas from "html2canvas";
 import { AdBanner } from "@/components/AdBanner";
+import ShareButtons from "@/components/ShareButtons";
 
 function TarotResultContent() {
   const { t, language } = useLanguage();
@@ -251,11 +252,19 @@ function TarotResultContent() {
           
           <button 
             onClick={handleDownloadImage}
-            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold rounded-full transition-all shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:scale-105"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-500 hover:to-indigo-400 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:scale-105"
           >
             <Download className="w-5 h-5" />
-            {language === "ko" ? "운명 카드 저장 & 공유" : "Save & Share Destiny Card"}
+            {language === "ko" ? "운명 카드 저장" : "Save Destiny Card"}
           </button>
+        </div>
+
+        <div className="mt-8">
+          <ShareButtons 
+            title={language === "ko" ? "나의 타로카드 운명 결과" : "My Tarot Destiny"}
+            description={resultText ? resultText.slice(0, 100) + "..." : "타로카드 결과를 확인해보세요!"}
+            kakaoAppKey={process.env.NEXT_PUBLIC_KAKAO_APP_KEY || ""}
+          />
         </div>
 
         {/* Interactive Chat Session */}

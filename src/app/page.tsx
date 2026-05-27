@@ -5,6 +5,7 @@ import { Sparkles, Stars } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import FamilySites from "@/components/FamilySites";
 
 export default function Home() {
   const { t } = useLanguage();

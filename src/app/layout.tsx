@@ -2,8 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { TopNavigation } from "@/components/TopNavigation";
+import InstallPrompt from "@/components/InstallPrompt";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,7 +66,11 @@ export default function RootLayout({
         <LanguageProvider>
           <TopNavigation />
           {children}
+          <InstallPrompt />
         </LanguageProvider>
+
+        <Analytics />
+        <SpeedInsights />
 
         {/* Google AdSense Global Script */}
         <Script
