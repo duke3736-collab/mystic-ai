@@ -95,6 +95,8 @@ function DailyResultContent() {
       const canvas = await html2canvas(cardRef.current, {
         backgroundColor: "#020617",
         scale: 2,
+        useCORS: true,
+        allowTaint: true,
       });
       const url = canvas.toDataURL("image/png");
       const a = document.createElement("a");

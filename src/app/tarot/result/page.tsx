@@ -109,6 +109,8 @@ function TarotResultContent() {
       const canvas = await html2canvas(cardRef.current, {
         backgroundColor: "#020617", // slate-950
         scale: 2,
+        useCORS: true,
+        allowTaint: true,
       });
       const url = canvas.toDataURL("image/png");
       const a = document.createElement("a");
@@ -198,6 +200,7 @@ function TarotResultContent() {
                     alt="Tarot Card" 
                     fill 
                     className="object-cover"
+                    unoptimized
                   />
                 </div>
               </div>
