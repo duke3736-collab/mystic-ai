@@ -36,10 +36,10 @@ export default function Home() {
         </motion.div>
 
         <div className="space-y-4 px-4 w-full">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-indigo-200 via-purple-200 to-indigo-400 tracking-tight break-keep text-balance w-full">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-[0_2px_24px_rgba(165,180,252,0.8)] tracking-tight break-keep text-balance w-full" style={{background: 'linear-gradient(135deg, #c7d2fe, #e9d5ff, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', textShadow: 'none'}}>
             {t("home.title")}
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-indigo-200/80 font-light max-w-lg mx-auto leading-relaxed break-keep text-balance">
+          <p className="text-sm sm:text-base md:text-lg text-indigo-100 font-light max-w-lg mx-auto leading-relaxed break-keep text-balance drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]">
             {t("home.subtitle")}
           </p>
         </div>
