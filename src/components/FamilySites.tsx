@@ -11,7 +11,7 @@ export default function FamilySites() {
       nameEn: "Summer Map",
       descKo: "국내 최고의 여름 휴가지를 찾아보세요",
       descEn: "Find the best summer vacation spots",
-      url: "https://summer.weknews.com",
+      url: "https://map.weknews.com",
       icon: "🏖️",
       color: "bg-blue-500/20 text-blue-300 border-blue-500/30",
     },
