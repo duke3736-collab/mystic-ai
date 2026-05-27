@@ -4,33 +4,51 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Sparkles, Stars } from "lucide-react";
+import { ArrowLeft, Sparkles, Stars, Lock, Unlock, PlaySquare } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function TarotPage() {
   const { t } = useLanguage();
   const router = useRouter();
+  const [spreadType, setSpreadType] = useState<'3-card' | 'celtic' | null>(null);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const [isPremiumUnlocked, setIsPremiumUnlocked] = useState(false);
   const [selectedCards, setSelectedCards] = useState<number[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-  // 10 cards to choose from
-  const totalCards = Array.from({ length: 10 }, (_, i) => i);
+  // We display 22 cards (Major Arcana size) to choose from
+  const totalCards = Array.from({ length: 22 }, (_, i) => i);
+  const maxCards = spreadType === 'celtic' ? 10 : 3;
 
   const toggleCard = (index: number) => {
     if (selectedCards.includes(index)) {
       setSelectedCards(selectedCards.filter((c) => c !== index));
-    } else if (selectedCards.length < 3) {
+    } else if (selectedCards.length < maxCards) {
       setSelectedCards([...selectedCards, index]);
     }
   };
 
   const handleAnalyze = () => {
     setIsAnalyzing(true);
-    // Simulate short loading before redirecting
     setTimeout(() => {
-      router.push(`/tarot/result?cards=${selectedCards.join(",")}`);
+      router.push(`/tarot/result?type=${spreadType}&cards=${selectedCards.join(",")}`);
     }, 1500);
+  };
+
+  const handleSelectCeltic = () => {
+    if (isPremiumUnlocked) {
+      setSpreadType('celtic');
+    } else {
+      setShowPremiumModal(true);
+    }
+  };
+
+  const handleUnlockPremium = () => {
+    // In real app: trigger AdMob or IAP
+    setIsPremiumUnlocked(true);
+    setShowPremiumModal(false);
+    setSpreadType('celtic');
   };
 
   return (
@@ -53,12 +71,50 @@ export default function TarotPage() {
             {t("tarot.subtitle")}
           </p>
           <div className="mt-4 inline-block px-4 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-200 font-medium tracking-widest">
-            {selectedCards.length} / 3 {t("tarot.selected")}
+            {spreadType ? `${selectedCards.length} / ${maxCards} ${t("tarot.selected")}` : "스프레드를 선택해주세요"}
           </div>
         </div>
 
-        {/* Card Spread */}
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 mt-4">
+        {!spreadType ? (
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-10 w-full max-w-2xl mx-auto">
+            {/* 3-Card Spread */}
+            <button 
+              onClick={() => setSpreadType('3-card')}
+              className="w-full flex-1 group bg-slate-900/60 backdrop-blur-md border-2 border-indigo-500/30 hover:border-indigo-400 rounded-3xl p-8 transition-all hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] text-left"
+            >
+              <div className="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-300 mb-6 group-hover:scale-110 transition-transform">
+                <Stars className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">과거·현재·미래 (3장)</h3>
+              <p className="text-indigo-200/70 text-sm mb-6">문제의 흐름과 가까운 미래를 빠르게 진단하는 기본 스프레드</p>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-500/20 text-emerald-400 rounded-lg font-bold text-sm">
+                무료 이용
+              </div>
+            </button>
+
+            {/* Celtic Cross Spread */}
+            <button 
+              onClick={handleSelectCeltic}
+              className="w-full flex-1 group relative bg-gradient-to-b from-indigo-900/60 to-purple-900/60 backdrop-blur-md border-2 border-yellow-500/30 hover:border-yellow-400 rounded-3xl p-8 transition-all hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(234,179,8,0.2)] text-left overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-full blur-3xl group-hover:bg-yellow-500/20 transition-all" />
+              <div className="relative z-10">
+                <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center text-yellow-400 mb-6 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(234,179,8,0.3)]">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">켈틱 크로스 (10장)</h3>
+                <p className="text-yellow-100/70 text-sm mb-6">문제의 본질, 장애물, 잠재적 결과까지 심층적으로 분석하는 최고급 스프레드</p>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-500/20 text-yellow-400 rounded-lg font-bold text-sm">
+                  {isPremiumUnlocked ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
+                  프리미엄 전용
+                </div>
+              </div>
+            </button>
+          </div>
+        ) : (
+          <>
+            {/* Card Spread */}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 mt-4 pb-32">
           {totalCards.map((cardIndex) => {
             const isSelected = selectedCards.includes(cardIndex);
             const selectionOrder = selectedCards.indexOf(cardIndex);
@@ -113,9 +169,15 @@ export default function TarotPage() {
                       {/* Label Overlay */}
                       <div className="absolute bottom-2 left-0 right-0 text-center z-10">
                         <div className="inline-block px-3 py-1 bg-black/60 backdrop-blur-sm border border-yellow-500/30 rounded-full text-yellow-200 font-bold text-xs sm:text-sm tracking-widest shadow-lg">
-                          {selectionOrder === 0 && t("tarot.past")}
-                          {selectionOrder === 1 && t("tarot.present")}
-                          {selectionOrder === 2 && t("tarot.future")}
+                          {spreadType === '3-card' ? (
+                            <>
+                              {selectionOrder === 0 && t("tarot.past")}
+                              {selectionOrder === 1 && t("tarot.present")}
+                              {selectionOrder === 2 && t("tarot.future")}
+                            </>
+                          ) : (
+                            `카드 ${selectionOrder + 1}`
+                          )}
                         </div>
                       </div>
                     </>
@@ -124,20 +186,20 @@ export default function TarotPage() {
               </motion.div>
             );
           })}
-        </div>
+            </div>
 
-        {/* Analyze Button */}
-        {selectedCards.length === 3 && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-16 flex justify-center pb-20"
-          >
-            <button 
-              onClick={handleAnalyze}
-              disabled={isAnalyzing}
-              className="group relative px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full font-bold text-white text-lg shadow-[0_0_40px_-10px_rgba(99,102,241,0.5)] hover:shadow-[0_0_60px_-15px_rgba(99,102,241,0.7)] transition-all duration-300 hover:scale-105 disabled:opacity-70 disabled:hover:scale-100"
-            >
+            {/* Analyze Button */}
+            {selectedCards.length === maxCards && (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="fixed bottom-8 left-0 right-0 flex justify-center z-50 pointer-events-none"
+              >
+                <button 
+                  onClick={handleAnalyze}
+                  disabled={isAnalyzing}
+                  className="pointer-events-auto group relative px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full font-bold text-white text-lg shadow-[0_0_40px_-10px_rgba(99,102,241,0.8)] hover:shadow-[0_0_60px_-15px_rgba(99,102,241,1)] transition-all duration-300 hover:scale-105 disabled:opacity-70 disabled:hover:scale-100"
+                >
               <span className="flex items-center gap-2">
                 {isAnalyzing ? (
                   <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
@@ -149,10 +211,48 @@ export default function TarotPage() {
                 {isAnalyzing ? t("tarot.analyzing") : t("tarot.analyze")}
               </span>
               <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
-            </button>
-          </motion.div>
+                </button>
+              </motion.div>
+            )}
+          </>
         )}
       </div>
+
+      {/* Premium Unlock Modal */}
+      {showPremiumModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+          <div className="bg-slate-900 border border-yellow-500/30 rounded-3xl p-8 max-w-sm w-full shadow-[0_0_50px_rgba(234,179,8,0.15)] relative">
+            <button 
+              onClick={() => setShowPremiumModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+            >
+              ✕
+            </button>
+            <div className="w-16 h-16 bg-yellow-500/20 rounded-2xl flex items-center justify-center text-yellow-400 mb-6 mx-auto">
+              <Lock className="w-8 h-8" />
+            </div>
+            <h3 className="text-2xl font-bold text-center text-white mb-3">프리미엄 스프레드</h3>
+            <p className="text-slate-300 text-center text-sm mb-8 leading-relaxed">
+              켈틱 크로스(10장) 스프레드는 심층 분석을 제공하는 프리미엄 기능입니다. 광고를 시청하고 무료로 잠금 해제하시겠습니까?
+            </p>
+            <div className="flex flex-col gap-3">
+              <button 
+                onClick={handleUnlockPremium}
+                className="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-yellow-600 to-amber-500 hover:from-yellow-500 hover:to-amber-400 text-black font-bold rounded-xl transition-all hover:scale-[1.02]"
+              >
+                <PlaySquare className="w-5 h-5" />
+                광고 보고 무료로 열기
+              </button>
+              <button 
+                onClick={() => setShowPremiumModal(false)}
+                className="w-full py-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium rounded-xl transition-colors"
+              >
+                다음에 하기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

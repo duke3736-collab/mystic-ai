@@ -36,7 +36,7 @@ function TarotResultContent() {
         const res = await fetch("/api/tarot", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cards: cardIndexes.slice(0, 3), language }),
+          body: JSON.stringify({ cards: cardIndexes, language }),
         });
         const data = await res.json();
         if (data.result) {
@@ -186,18 +186,24 @@ function TarotResultContent() {
           <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-yellow-500/30 rounded-bl-3xl m-4" />
           <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-yellow-500/30 rounded-br-3xl m-4" />
 
-          {/* Display The 3 Cards */}
-          <div className="flex justify-center gap-4 md:gap-8 mb-10 mt-6">
-            {cardIndexes.slice(0, 3).map((_, index) => (
+          {/* Display The Cards */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-10 mt-6">
+            {cardIndexes.map((cardIndex, index) => (
               <div key={index} className="flex flex-col items-center">
-                <div className="text-yellow-500/70 text-sm font-bold tracking-widest mb-3">
-                  {index === 0 && (language === "ko" ? "과거" : "PAST")}
-                  {index === 1 && (language === "ko" ? "현재" : "PRESENT")}
-                  {index === 2 && (language === "ko" ? "미래" : "FUTURE")}
+                <div className="text-yellow-500/70 text-xs md:text-sm font-bold tracking-widest mb-3">
+                  {cardIndexes.length === 3 ? (
+                    <>
+                      {index === 0 && (language === "ko" ? "과거" : "PAST")}
+                      {index === 1 && (language === "ko" ? "현재" : "PRESENT")}
+                      {index === 2 && (language === "ko" ? "미래" : "FUTURE")}
+                    </>
+                  ) : (
+                    `CARD ${index + 1}`
+                  )}
                 </div>
-                <div className="relative w-24 h-36 md:w-32 md:h-48 rounded-xl overflow-hidden shadow-2xl border-2 border-yellow-500/40">
+                <div className={`relative ${cardIndexes.length > 3 ? 'w-16 h-24 md:w-20 md:h-32' : 'w-24 h-36 md:w-32 md:h-48'} rounded-xl overflow-hidden shadow-2xl border-2 border-yellow-500/40`}>
                   <Image 
-                    src={`/images/tarot/front_${index + 1}.png`} 
+                    src={`/images/tarot/front_${cardIndex + 1}.png`} 
                     alt="Tarot Card" 
                     fill 
                     className="object-cover"
