@@ -12,7 +12,7 @@ export default function Home() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden flex flex-col items-center justify-center p-4">
+    <div className="relative min-h-screen overflow-x-hidden flex flex-col items-center w-full">
       {/* Mystical Background Gradients */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/40 via-slate-950 to-slate-950 -z-10" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl -z-10" />
@@ -25,7 +25,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="max-w-2xl text-center z-10 space-y-6"
+        className="w-full flex-1 flex flex-col items-center justify-center min-h-[85vh] max-w-2xl mx-auto text-center z-10 space-y-6 pt-8 pb-4 px-4"
       >
         <motion.div
           animate={{ y: [0, -10, 0] }}
@@ -86,7 +86,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="w-full z-10"
+        className="w-full z-10 pb-12"
       >
         <FamilySites />
         <div className="py-8 w-full max-w-4xl mx-auto">

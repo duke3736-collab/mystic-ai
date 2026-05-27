@@ -36,7 +36,7 @@ export default function FamilySites() {
   ];
 
   return (
-    <div className="w-full max-w-4xl mx-auto mt-20 mb-10 px-4">
+    <div className="w-full max-w-4xl mx-auto mt-8 mb-10 px-4">
       <div className="text-center mb-6">
         <h3 className="text-xl font-bold text-slate-300">
           {language === "ko" ? "패밀리 서비스" : "Our Family Services"}
