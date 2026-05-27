@@ -5,7 +5,9 @@ import { ArrowLeft, Sparkles, Download, Volume2, VolumeX, MessageCircle, Send } 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState, Suspense } from "react";
-import html2canvas from "html2canvas";
+import confetti from "canvas-confetti";
+import CaptureWrapper from "@/components/CaptureWrapper";
+import LuckyWidget from "@/components/LuckyWidget";
 import { AdBanner } from "@/components/AdBanner";
 import ShareButtons from "@/components/ShareButtons";
 import CoupangAd from "@/components/CoupangAd";
@@ -40,7 +42,6 @@ function DailyResultContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [isChatLoading, setIsChatLoading] = useState(false);
 
-  const cardRef = useRef<HTMLDivElement>(null);
   const synth = typeof window !== "undefined" ? window.speechSynthesis : null;
 
   useEffect(() => {
@@ -89,25 +90,6 @@ function DailyResultContent() {
     
     setIsSpeaking(true);
     synth.speak(utterance);
-  };
-
-  const handleDownloadImage = async () => {
-    if (!cardRef.current) return;
-    try {
-      const canvas = await html2canvas(cardRef.current, {
-        backgroundColor: "#020617",
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-      });
-      const url = canvas.toDataURL("image/png");
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `daily_horoscope_${signId}.png`;
-      a.click();
-    } catch (err) {
-      console.error("Failed to generate image", err);
-    }
   };
 
   const handleSendMessage = async (e: React.FormEvent) => {
@@ -162,71 +144,66 @@ function DailyResultContent() {
           </h1>
         </div>
 
-        <div 
-          ref={cardRef}
-          className="bg-slate-900/60 backdrop-blur-xl border border-blue-500/30 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden"
-        >
-          <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-blue-500/30 rounded-tl-3xl m-4" />
-          <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-blue-500/30 rounded-tr-3xl m-4" />
-          <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-blue-500/30 rounded-bl-3xl m-4" />
-          <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-blue-500/30 rounded-br-3xl m-4" />
+        {/* Shareable Destiny Card Section */}
+        <CaptureWrapper filename="mystic-daily">
+          <div className="bg-slate-900/60 backdrop-blur-xl border border-pink-500/30 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-blue-500/30 rounded-tl-3xl m-4" />
+            <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-blue-500/30 rounded-tr-3xl m-4" />
+            <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-blue-500/30 rounded-bl-3xl m-4" />
+            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-blue-500/30 rounded-br-3xl m-4" />
 
-          <div className="text-center mb-10 border-b border-blue-500/20 pb-6">
-            <div className="text-6xl mb-4">{signInfo.icon}</div>
-            <h2 className="text-2xl font-bold text-indigo-100">
-              {language === "ko" ? signInfo.nameKo : signInfo.nameEn}
-            </h2>
-            <div className="text-indigo-400/80 text-sm mt-2 font-medium tracking-widest">
-              {signInfo.date}
+            <div className="text-center mb-10 border-b border-blue-500/20 pb-6">
+              <div className="text-6xl mb-4">{signInfo.icon}</div>
+              <h2 className="text-2xl font-bold text-indigo-100">
+                {language === "ko" ? signInfo.nameKo : signInfo.nameEn}
+              </h2>
+              <div className="text-indigo-400/80 text-sm mt-2 font-medium tracking-widest">
+                {signInfo.date}
+              </div>
+            </div>
+
+            <LuckyWidget seed={signId} />
+
+            <div className="max-w-2xl mx-auto text-center px-4">
+              <Sparkles className="w-8 h-8 text-blue-400 mx-auto mb-6 opacity-80" />
+              {isLoading ? (
+                <div className="flex flex-col items-center justify-center space-y-6 my-12">
+                  <div className="text-7xl animate-bounce">✨</div>
+                  <div className="text-xl md:text-2xl font-bold text-amber-300 animate-pulse text-center">
+                    {language === "ko" ? "점성술사가 오늘의 별자리를 읽고 있습니다..." : "The Astrologer is reading your daily stars..."}
+                  </div>
+                  <div className="text-sm text-slate-400">
+                    {language === "ko" ? "잠시만 기다려주세요 (약 10~15초 소요)" : "Please wait a moment (takes about 10~15 seconds)"}
+                  </div>
+                </div>
+              ) : (
+                <p className="text-lg md:text-2xl leading-relaxed text-white font-medium break-keep drop-shadow-md">
+                  "{resultText}"
+                </p>
+              )}
+            </div>
+            
+            <div className="text-center mt-12 text-slate-500 text-xs">
+              Generated by Mystic AI
             </div>
           </div>
-
-          <div className="max-w-2xl mx-auto text-center px-4">
-            <Sparkles className="w-8 h-8 text-blue-400 mx-auto mb-6 opacity-80" />
-            {isLoading ? (
-              <div className="flex flex-col items-center justify-center space-y-6 my-12">
-                <div className="text-7xl animate-bounce">✨</div>
-                <div className="text-xl md:text-2xl font-bold text-amber-300 animate-pulse text-center">
-                  {language === "ko" ? "점성술사가 오늘의 별자리를 읽고 있습니다..." : "The Astrologer is reading your daily stars..."}
-                </div>
-                <div className="text-sm text-slate-400">
-                  {language === "ko" ? "잠시만 기다려주세요 (약 10~15초 소요)" : "Please wait a moment (takes about 10~15 seconds)"}
-                </div>
-              </div>
-            ) : (
-              <p className="text-lg md:text-2xl leading-relaxed text-white font-medium break-keep drop-shadow-md">
-                "{resultText}"
-              </p>
-            )}
-          </div>
-          
-          <div className="text-center mt-12 text-slate-500 text-xs">
-            Generated by Mystic AI
-          </div>
-        </div>
+        </CaptureWrapper>
 
         {/* AdSense Banner */}
         <div className="mt-8">
           <AdBanner dataAdSlot="1867596538" />
         </div>
 
+        {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
           <button 
             onClick={handleSpeak}
             className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all ${
-              isSpeaking ? "bg-indigo-600 text-white shadow-[0_0_20px_rgba(79,70,229,0.5)]" : "bg-slate-800 text-indigo-200 hover:bg-slate-700"
+              isSpeaking ? "bg-pink-600 text-white shadow-[0_0_20px_rgba(236,72,153,0.5)]" : "bg-slate-800 text-pink-200 hover:bg-slate-700"
             }`}
           >
             {isSpeaking ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
             {isSpeaking ? (language === "ko" ? "목소리 끄기" : "Stop Voice") : (language === "ko" ? "운명 듣기" : "Listen to Destiny")}
-          </button>
-          
-          <button 
-            onClick={handleDownloadImage}
-            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-500 hover:to-indigo-400 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:scale-105"
-          >
-            <Download className="w-5 h-5" />
-            {language === "ko" ? "오늘의 운세 카드 저장" : "Save Horoscope Card"}
           </button>
         </div>
 

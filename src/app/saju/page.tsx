@@ -5,8 +5,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Sparkles, Moon, Sun, User, Calendar, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import AdSense from "@/components/AdSense";
+import AnalyzingOverlay from "@/components/AnalyzingOverlay";
 
 export default function SajuPage() {
   const { t, language } = useLanguage();
@@ -39,11 +40,11 @@ export default function SajuPage() {
     if (!formData.name) return;
 
     setIsAnalyzing(true);
-    // Simulate loading and redirect with query params
-    setTimeout(() => {
-      const query = new URLSearchParams(formData).toString();
-      router.push(`/saju/result?${query}`);
-    }, 1500);
+  };
+
+  const handleAnalysisComplete = () => {
+    const query = new URLSearchParams(formData).toString();
+    router.push(`/saju/result?${query}`);
   };
 
   return (
@@ -228,6 +229,17 @@ export default function SajuPage() {
           </form>
         </motion.div>
       </div>
+
+      {/* Analyzing Overlay */}
+      <AnimatePresence>
+        {isAnalyzing && (
+          <AnalyzingOverlay 
+            type="saju" 
+            onComplete={handleAnalysisComplete} 
+            duration={4000} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

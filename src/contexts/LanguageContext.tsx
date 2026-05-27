@@ -13,7 +13,7 @@ interface LanguageContextType {
 const translations = {
   ko: {
     "nav.daily": "오늘의 운세",
-    "nav.tarot": "타로 읽기",
+    "nav.tarot": "타로카드",
     "nav.saju": "글로벌 사주",
     "home.title": "별빛이 들려주는 당신의 운명",
     "home.subtitle": "수천 년의 동양 철학과 서양 타로의 신비로운 결합",

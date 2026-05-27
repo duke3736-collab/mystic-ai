@@ -6,7 +6,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function POST(req: Request) {
   try {
-    const { cards, language } = await req.json();
+    const { cards, language, category = "general" } = await req.json();
     
     if (!cards || (cards.length !== 3 && cards.length !== 10)) {
       return NextResponse.json({ error: "Invalid cards provided" }, { status: 400 });
@@ -29,19 +29,29 @@ export async function POST(req: Request) {
       const presentCard = cardNames[cards[1]];
       const futureCard = cardNames[cards[2]];
 
+      const categoryText = 
+        category === "love" ? "Focus specifically on love, romance, relationships, and the partner's feelings." : 
+        category === "wealth" ? "Focus specifically on wealth, career, money flow, and financial opportunities." : 
+        "Provide a deep, mystical, and encouraging general reading.";
+
       systemPrompt = `You are a mystical and wise Tarot Master. 
 The user has drawn 3 cards:
 1. Past: ${pastCard}
 2. Present: ${presentCard}
 3. Future: ${futureCard}
 
-Provide a deep, mystical, and encouraging reading based on these cards. 
-Keep the reading around 3-4 sentences (about 60-80 words). Do not use bullet points or introductory fluff. Just deliver the reading directly in a poetic and empathetic tone.
+${categoryText}
+Based on these cards, keep the reading around 3-4 sentences (about 60-80 words). Do not use bullet points or introductory fluff. Just deliver the reading directly in a poetic and empathetic tone.
 
 ${language === "ko" ? "IMPORTANT: Write the response completely in Korean (한국어)." : "IMPORTANT: Write the response completely in English."}
 `;
     } else if (cards.length === 10) {
       const drawnCards = cards.map((idx: number) => cardNames[idx]);
+      const categoryText = 
+        category === "love" ? "Focus specifically on love, romance, relationships, and the partner's feelings." : 
+        category === "wealth" ? "Focus specifically on wealth, career, money flow, and financial opportunities." : 
+        "Provide a deep, profound, and structured general reading.";
+
       systemPrompt = `You are a mystical and wise Tarot Master. 
 The user has drawn 10 cards for a Celtic Cross spread:
 1. The Present / The Querent: ${drawnCards[0]}
@@ -55,8 +65,8 @@ The user has drawn 10 cards for a Celtic Cross spread:
 9. Hopes and Fears: ${drawnCards[8]}
 10. The Ultimate Outcome: ${drawnCards[9]}
 
-Provide a deep, profound, and structured reading based on these cards. 
-Keep the reading around 3 paragraphs (about 150-200 words). Do not use bullet points, but use line breaks for readability. Deliver a highly mystical, empathetic, and insightful reading.
+${categoryText}
+Based on these cards, keep the reading around 3 paragraphs (about 150-200 words). Do not use bullet points, but use line breaks for readability. Deliver a highly mystical, empathetic, and insightful reading.
 
 ${language === "ko" ? "IMPORTANT: Write the response completely in Korean (한국어)." : "IMPORTANT: Write the response completely in English."}
 `;

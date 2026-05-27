@@ -7,6 +7,7 @@ import { ArrowLeft, Sparkles, Sun } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import AdSense from "@/components/AdSense";
+import AnalyzingOverlay from "@/components/AnalyzingOverlay";
 
 const ZODIAC_SIGNS = [
   { id: "aries", icon: "♈", nameKo: "양자리", nameEn: "Aries", date: "03.21 - 04.19" },
@@ -42,10 +43,10 @@ export default function DailyPage() {
     if (!selectedSign) return;
 
     setIsAnalyzing(true);
-    // Simulate loading and redirect with query params
-    setTimeout(() => {
-      router.push(`/daily/result?sign=${selectedSign}`);
-    }, 1500);
+  };
+
+  const handleAnalysisComplete = () => {
+    router.push(`/daily/result?sign=${selectedSign}`);
   };
 
   return (
@@ -133,6 +134,17 @@ export default function DailyPage() {
           </AnimatePresence>
         </div>
       </div>
+
+      {/* Analyzing Overlay */}
+      <AnimatePresence>
+        {isAnalyzing && (
+          <AnalyzingOverlay 
+            type="daily" 
+            onComplete={handleAnalysisComplete} 
+            duration={4000} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

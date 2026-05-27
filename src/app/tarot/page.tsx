@@ -8,10 +8,13 @@ import { ArrowLeft, Sparkles, Stars, Lock, Unlock, PlaySquare } from "lucide-rea
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AdSense from "@/components/AdSense";
+import AnalyzingOverlay from "@/components/AnalyzingOverlay";
+import { AnimatePresence } from "framer-motion";
 
 export default function TarotPage() {
   const { t, language } = useLanguage();
   const router = useRouter();
+  const [category, setCategory] = useState<'general' | 'love' | 'wealth'>('general');
   const [spreadType, setSpreadType] = useState<'3-card' | 'celtic' | null>(null);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [isPremiumUnlocked, setIsPremiumUnlocked] = useState(false);
@@ -32,9 +35,10 @@ export default function TarotPage() {
 
   const handleAnalyze = () => {
     setIsAnalyzing(true);
-    setTimeout(() => {
-      router.push(`/tarot/result?type=${spreadType}&cards=${selectedCards.join(",")}`);
-    }, 1500);
+  };
+
+  const handleAnalysisComplete = () => {
+    router.push(`/tarot/result?type=${spreadType}&cards=${selectedCards.join(",")}&category=${category}`);
   };
 
   const handleSelectCeltic = () => {
@@ -80,8 +84,32 @@ export default function TarotPage() {
           <AdSense />
         </div>
 
+        {/* Category Selector */}
+        {!spreadType && (
+          <div className="relative z-20 flex flex-wrap justify-center gap-3 mb-10 w-full max-w-2xl mx-auto px-4">
+            {[
+              { id: 'general', labelKo: '✨ 종합운', labelEn: '✨ General' },
+              { id: 'love', labelKo: '💕 연애운', labelEn: '💕 Love' },
+              { id: 'wealth', labelKo: '💰 금전운', labelEn: '💰 Wealth' }
+            ].map(cat => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setCategory(cat.id as any)}
+                className={`px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all ${
+                  category === cat.id 
+                    ? "bg-indigo-600 text-white shadow-[0_0_20px_rgba(79,70,229,0.5)]" 
+                    : "bg-slate-800/60 text-indigo-300 hover:bg-slate-700 hover:text-white border border-indigo-500/30"
+                }`}
+              >
+                {language === "ko" ? cat.labelKo : cat.labelEn}
+              </button>
+            ))}
+          </div>
+        )}
+
         {!spreadType ? (
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-10 w-full max-w-2xl mx-auto">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full max-w-2xl mx-auto">
             {/* 3-Card Spread */}
             <button 
               onClick={() => setSpreadType('3-card')}
@@ -258,6 +286,17 @@ export default function TarotPage() {
           </div>
         </div>
       )}
+
+      {/* Analyzing Overlay */}
+      <AnimatePresence>
+        {isAnalyzing && (
+          <AnalyzingOverlay 
+            type="tarot" 
+            onComplete={handleAnalysisComplete} 
+            duration={4000} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
