@@ -50,11 +50,11 @@ export default function DailyPage() {
           <span>{t("tarot.back")}</span>
         </Link>
 
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-indigo-200 via-blue-200 to-purple-400 tracking-tight mb-4 break-keep">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-3 break-keep" style={{background: 'linear-gradient(135deg, #bfdbfe, #c7d2fe, #c4b5fd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>
             {t("daily.title")}
           </h1>
-          <p className="text-blue-200/80 font-light text-lg break-keep px-4">
+          <p className="text-blue-100 font-light text-base break-keep px-4">
             {t("daily.subtitle")}
           </p>
         </div>

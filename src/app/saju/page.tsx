@@ -58,11 +58,11 @@ export default function SajuPage() {
           <span>{t("tarot.back")}</span>
         </Link>
 
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-emerald-200 via-teal-200 to-blue-400 tracking-tight mb-4 break-keep">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-3 break-keep" style={{background: 'linear-gradient(135deg, #6ee7b7, #99f6e4, #93c5fd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>
             {t("saju.title")}
           </h1>
-          <p className="text-emerald-200/80 font-light text-lg break-keep px-4">
+          <p className="text-emerald-100 font-light text-base break-keep px-4">
             {t("saju.subtitle")}
           </p>
         </div>

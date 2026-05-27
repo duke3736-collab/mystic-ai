@@ -45,11 +45,11 @@ export default function TarotPage() {
           <span>{t("tarot.back")}</span>
         </Link>
 
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-indigo-200 via-purple-200 to-indigo-400 tracking-tight mb-4 break-keep">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white tracking-tight mb-3 break-keep" style={{background: 'linear-gradient(135deg, #c7d2fe, #e9d5ff, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>
             {t("tarot.title")}
           </h1>
-          <p className="text-indigo-200/80 font-light text-lg break-keep px-4">
+          <p className="text-indigo-100 font-light text-base break-keep px-4">
             {t("tarot.subtitle")}
           </p>
           <div className="mt-4 inline-block px-4 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-200 font-medium tracking-widest">
@@ -58,7 +58,7 @@ export default function TarotPage() {
         </div>
 
         {/* Card Spread */}
-        <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-8">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 mt-4">
           {totalCards.map((cardIndex) => {
             const isSelected = selectedCards.includes(cardIndex);
             const selectionOrder = selectedCards.indexOf(cardIndex);
