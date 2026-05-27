@@ -183,10 +183,14 @@ function DailyResultContent() {
           <div className="max-w-2xl mx-auto text-center px-4">
             <Sparkles className="w-8 h-8 text-blue-400 mx-auto mb-6 opacity-80" />
             {isLoading ? (
-              <div className="animate-pulse space-y-4">
-                <div className="h-4 bg-slate-700/50 rounded w-3/4 mx-auto"></div>
-                <div className="h-4 bg-slate-700/50 rounded w-5/6 mx-auto"></div>
-                <div className="h-4 bg-slate-700/50 rounded w-2/3 mx-auto"></div>
+              <div className="flex flex-col items-center justify-center space-y-6 my-12">
+                <div className="text-7xl animate-bounce">✨</div>
+                <div className="text-xl md:text-2xl font-bold text-amber-300 animate-pulse text-center">
+                  {language === "ko" ? "점성술사가 오늘의 별자리를 읽고 있습니다..." : "The Astrologer is reading your daily stars..."}
+                </div>
+                <div className="text-sm text-slate-400">
+                  {language === "ko" ? "잠시만 기다려주세요 (약 10~15초 소요)" : "Please wait a moment (takes about 10~15 seconds)"}
+                </div>
               </div>
             ) : (
               <p className="text-lg md:text-2xl leading-relaxed text-white font-medium break-keep drop-shadow-md">

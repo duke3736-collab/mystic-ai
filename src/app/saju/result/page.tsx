@@ -243,15 +243,14 @@ function SajuResultContent() {
           <div className="max-w-3xl mx-auto px-4 mt-8">
             <Sparkles className="w-8 h-8 text-emerald-400 mx-auto mb-10 opacity-80" />
             {isLoading ? (
-              <div className="animate-pulse space-y-10">
-                {[1, 2, 3, 4].map(i => (
-                  <div key={i} className="space-y-4">
-                    <div className="h-6 bg-slate-700/50 rounded w-1/4"></div>
-                    <div className="h-4 bg-slate-700/50 rounded w-full"></div>
-                    <div className="h-4 bg-slate-700/50 rounded w-5/6"></div>
-                    <div className="h-4 bg-slate-700/50 rounded w-3/4"></div>
-                  </div>
-                ))}
+              <div className="flex flex-col items-center justify-center space-y-6 my-12">
+                <div className="text-7xl animate-bounce">📜</div>
+                <div className="text-xl md:text-2xl font-bold text-emerald-400 animate-pulse text-center">
+                  {language === "ko" ? "명리학자가 당신의 사주팔자를 분석하고 있습니다..." : "The Master is analyzing your destiny..."}
+                </div>
+                <div className="text-sm text-slate-400">
+                  {language === "ko" ? "잠시만 기다려주세요 (약 10~15초 소요)" : "Please wait a moment (takes about 10~15 seconds)"}
+                </div>
               </div>
             ) : resultText ? (
               <div className="space-y-12 text-left">
