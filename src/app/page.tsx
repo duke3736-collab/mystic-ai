@@ -25,7 +25,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="w-full flex-1 flex flex-col items-center justify-center min-h-[85vh] max-w-2xl mx-auto text-center z-10 space-y-6 pt-8 pb-4 px-4"
+        className="w-full flex flex-col items-center max-w-2xl mx-auto text-center z-10 space-y-6 pt-[18vh] pb-4 px-4"
       >
         <motion.div
           animate={{ y: [0, -10, 0] }}
