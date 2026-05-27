@@ -62,6 +62,14 @@ export default function Home() {
             <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
           </Link>
 
+          <Link href="/ohaasa" className="group relative px-8 py-4 bg-gradient-to-r from-fuchsia-500 to-pink-600 rounded-full font-bold text-white text-lg shadow-[0_0_40px_-10px_rgba(217,70,239,0.5)] hover:shadow-[0_0_60px_-15px_rgba(217,70,239,0.7)] transition-all duration-300 hover:scale-105">
+            <span className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+              오하아사 운세
+            </span>
+            <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
+          </Link>
+
           <Link href="/saju" className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full font-bold text-white text-lg shadow-[0_0_40px_-10px_rgba(16,185,129,0.5)] hover:shadow-[0_0_60px_-15px_rgba(16,185,129,0.7)] transition-all duration-300 hover:scale-105">
             <span className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
