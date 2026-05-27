@@ -14,7 +14,7 @@ export default function CoupangAd({ type }: CoupangAdProps) {
 
   const coupangLinks = {
     tarot: "https://link.coupang.com/a/d6qUzhMlMa",
-    saju: "https://coupa.ng/placeholder",
+    saju: "https://link.coupang.com/a/d6q3wOjViC",
     daily: "https://coupa.ng/placeholder",
   };
 
