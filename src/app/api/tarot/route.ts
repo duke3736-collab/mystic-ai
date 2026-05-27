@@ -65,10 +65,10 @@ ${language === "ko" ? "IMPORTANT: Write the response completely in Korean (í•œêµ
     const text = result.response.text();
 
     return NextResponse.json({ result: text });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini API Error:", error);
     return NextResponse.json(
-      { error: "Failed to generate reading" },
+      { error: "Failed to generate reading", details: error.message },
       { status: 500 }
     );
   }
