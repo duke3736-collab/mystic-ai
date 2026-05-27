@@ -96,26 +96,28 @@ export default function DailyPage() {
           <AnimatePresence>
             {selectedSign && (
               <motion.div
-                initial={{ opacity: 0, height: 0, y: 20 }}
-                animate={{ opacity: 1, height: "auto", y: 0 }}
-                exit={{ opacity: 0, height: 0, y: 20 }}
-                className="w-full flex justify-center mt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="fixed bottom-8 sm:bottom-12 left-0 right-0 px-4 z-50 pointer-events-none flex justify-center"
               >
-                <button
-                  onClick={handleSubmit}
-                  disabled={isAnalyzing}
-                  className="w-full relative group px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full font-bold text-white text-lg md:text-xl shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:shadow-[0_0_60px_-15px_rgba(79,70,229,0.7)] transition-all duration-300 hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100 flex items-center justify-center gap-2"
-                >
-                  {isAnalyzing ? (
-                    <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
-                      <Sun className="w-5 h-5" />
-                    </motion.div>
-                  ) : (
-                    <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                  )}
-                  {isAnalyzing ? t("daily.analyzing") : t("daily.analyze")}
-                  <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
-                </button>
+                <div className="w-full max-w-sm pointer-events-auto">
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isAnalyzing}
+                    className="w-full relative group px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full font-bold text-white text-lg md:text-xl shadow-[0_0_40px_rgba(79,70,229,0.8)] hover:shadow-[0_0_60px_rgba(79,70,229,1)] transition-all duration-300 hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100 flex items-center justify-center gap-2"
+                  >
+                    {isAnalyzing ? (
+                      <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
+                        <Sun className="w-5 h-5" />
+                      </motion.div>
+                    ) : (
+                      <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                    )}
+                    {isAnalyzing ? t("daily.analyzing") : t("daily.analyze")}
+                    <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
+                  </button>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
