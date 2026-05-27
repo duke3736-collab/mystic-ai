@@ -12,8 +12,13 @@ interface CoupangAdProps {
 export default function CoupangAd({ type }: CoupangAdProps) {
   const { language } = useLanguage();
 
-  // 대표님의 쿠팡 파트너스 링크로 나중에 교체해야 합니다.
-  const COUPANG_LINK = "https://coupa.ng/placeholder"; 
+  const coupangLinks = {
+    tarot: "https://link.coupang.com/a/d6qUzhMlMa",
+    saju: "https://coupa.ng/placeholder",
+    daily: "https://coupa.ng/placeholder",
+  };
+
+  const COUPANG_LINK = coupangLinks[type] || "https://coupa.ng/placeholder";
 
   const adContent = {
     tarot: {
