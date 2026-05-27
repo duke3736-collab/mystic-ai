@@ -203,7 +203,7 @@ function TarotResultContent() {
                 </div>
                 <div className={`relative ${cardIndexes.length > 3 ? 'w-16 h-24 md:w-20 md:h-32' : 'w-24 h-36 md:w-32 md:h-48'} rounded-xl overflow-hidden shadow-2xl border-2 border-yellow-500/40`}>
                   <Image 
-                    src={`/images/tarot/front_${(cardIndex % 3) + 1}.png`} 
+                    src={`/images/tarot/front_${cardIndex + 1}.png`} 
                     alt="Tarot Card" 
                     fill 
                     className="object-cover"
