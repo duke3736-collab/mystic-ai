@@ -21,6 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mystic AI - 별빛이 들려주는 당신의 운명",
   description: "타로카드, 평생 사주, 그리고 오늘의 운세를 AI가 실시간으로 분석해 드립니다. 나만의 운명 카드를 뽑아보세요.",
+  keywords: ["운세", "무료운세", "타로", "사주", "오늘의운세", "AI운세", "사주팔자", "점성술", "별자리운세", "명리학", "신년운세"],
   manifest: "/manifest.json",
   openGraph: {
     title: "Mystic AI - 별빛이 들려주는 당신의 운명",
