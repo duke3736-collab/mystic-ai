@@ -47,7 +47,7 @@ export default function SajuPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden flex flex-col items-center p-4 pt-20 pb-32">
+    <div className="relative min-h-screen overflow-x-hidden flex flex-col items-center p-4 pt-32 pb-48">
       {/* Mystical Background Gradients */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/40 via-slate-950 to-slate-950 -z-10" />
       <div className="fixed top-1/3 left-1/4 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl -z-10" />
