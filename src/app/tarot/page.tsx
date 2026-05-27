@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function TarotPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const router = useRouter();
   const [spreadType, setSpreadType] = useState<'3-card' | 'celtic' | null>(null);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
@@ -71,7 +71,7 @@ export default function TarotPage() {
             {t("tarot.subtitle")}
           </p>
           <div className="mt-4 inline-block px-4 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-200 font-medium tracking-widest">
-            {spreadType ? `${selectedCards.length} / ${maxCards} ${t("tarot.selected")}` : "스프레드를 선택해주세요"}
+            {spreadType ? `${selectedCards.length} / ${maxCards} ${t("tarot.selected")}` : (language === "ko" ? "스프레드를 선택해주세요" : "Please select a spread")}
           </div>
         </div>
 
@@ -85,10 +85,10 @@ export default function TarotPage() {
               <div className="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-300 mb-6 group-hover:scale-110 transition-transform">
                 <Stars className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">과거·현재·미래 (3장)</h3>
-              <p className="text-indigo-200/70 text-sm mb-6">문제의 흐름과 가까운 미래를 빠르게 진단하는 기본 스프레드</p>
+              <h3 className="text-2xl font-bold text-white mb-2">{language === "ko" ? "과거·현재·미래 (3장)" : "Past, Present, Future (3 Cards)"}</h3>
+              <p className="text-indigo-200/70 text-sm mb-6">{language === "ko" ? "문제의 흐름과 가까운 미래를 빠르게 진단하는 기본 스프레드" : "A basic spread that quickly diagnoses the problem and near future"}</p>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-500/20 text-emerald-400 rounded-lg font-bold text-sm">
-                무료 이용
+                {language === "ko" ? "무료 이용" : "Free"}
               </div>
             </button>
 
@@ -102,11 +102,11 @@ export default function TarotPage() {
                 <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center text-yellow-400 mb-6 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(234,179,8,0.3)]">
                   <Sparkles className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">켈틱 크로스 (10장)</h3>
-                <p className="text-yellow-100/70 text-sm mb-6">문제의 본질, 장애물, 잠재적 결과까지 심층적으로 분석하는 최고급 스프레드</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{language === "ko" ? "켈틱 크로스 (10장)" : "Celtic Cross (10 Cards)"}</h3>
+                <p className="text-yellow-100/70 text-sm mb-6">{language === "ko" ? "문제의 본질, 장애물, 잠재적 결과까지 심층적으로 분석하는 최고급 스프레드" : "Premium spread analyzing root causes, obstacles, and outcomes in depth"}</p>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-500/20 text-yellow-400 rounded-lg font-bold text-sm">
                   {isPremiumUnlocked ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
-                  프리미엄 전용
+                  {language === "ko" ? "프리미엄 전용" : "Premium Only"}
                 </div>
               </div>
             </button>
@@ -176,7 +176,7 @@ export default function TarotPage() {
                               {selectionOrder === 2 && t("tarot.future")}
                             </>
                           ) : (
-                            `카드 ${selectionOrder + 1}`
+                            language === "ko" ? `카드 ${selectionOrder + 1}` : `Card ${selectionOrder + 1}`
                           )}
                         </div>
                       </div>
@@ -231,9 +231,9 @@ export default function TarotPage() {
             <div className="w-16 h-16 bg-yellow-500/20 rounded-2xl flex items-center justify-center text-yellow-400 mb-6 mx-auto">
               <Lock className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-bold text-center text-white mb-3">프리미엄 스프레드</h3>
+            <h3 className="text-2xl font-bold text-center text-white mb-3">{language === "ko" ? "프리미엄 스프레드" : "Premium Spread"}</h3>
             <p className="text-slate-300 text-center text-sm mb-8 leading-relaxed">
-              켈틱 크로스(10장) 스프레드는 심층 분석을 제공하는 프리미엄 기능입니다. 광고를 시청하고 무료로 잠금 해제하시겠습니까?
+              {language === "ko" ? "켈틱 크로스(10장) 스프레드는 심층 분석을 제공하는 프리미엄 기능입니다. 광고를 시청하고 무료로 잠금 해제하시겠습니까?" : "The Celtic Cross (10 Cards) spread is a premium feature providing in-depth analysis. Watch a short ad to unlock it for free?"}
             </p>
             <div className="flex flex-col gap-3">
               <button 
@@ -241,13 +241,13 @@ export default function TarotPage() {
                 className="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-yellow-600 to-amber-500 hover:from-yellow-500 hover:to-amber-400 text-black font-bold rounded-xl transition-all hover:scale-[1.02]"
               >
                 <PlaySquare className="w-5 h-5" />
-                광고 보고 무료로 열기
+                {language === "ko" ? "광고 보고 무료로 열기" : "Watch Ad to Unlock"}
               </button>
               <button 
                 onClick={() => setShowPremiumModal(false)}
                 className="w-full py-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium rounded-xl transition-colors"
               >
-                다음에 하기
+                {language === "ko" ? "다음에 하기" : "Maybe Later"}
               </button>
             </div>
           </div>
