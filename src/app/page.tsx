@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import FamilySites from "@/components/FamilySites";
+import AdSense from "@/components/AdSense";
 
 export default function Home() {
   const { t } = useLanguage();
@@ -88,6 +89,9 @@ export default function Home() {
         className="w-full z-10"
       >
         <FamilySites />
+        <div className="py-8 w-full max-w-4xl mx-auto">
+          <AdSense />
+        </div>
       </motion.div>
     </div>
   );

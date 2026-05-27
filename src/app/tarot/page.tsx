@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowLeft, Sparkles, Stars, Lock, Unlock, PlaySquare } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import AdSense from "@/components/AdSense";
 
 export default function TarotPage() {
   const { t, language } = useLanguage();
@@ -73,6 +74,10 @@ export default function TarotPage() {
           <div className="mt-4 inline-block px-4 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-200 font-medium tracking-widest">
             {spreadType ? `${selectedCards.length} / ${maxCards} ${t("tarot.selected")}` : (language === "ko" ? "스프레드를 선택해주세요" : "Please select a spread")}
           </div>
+        </div>
+
+        <div className="mb-8 w-full max-w-lg mx-auto">
+          <AdSense />
         </div>
 
         {!spreadType ? (

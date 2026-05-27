@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Sparkles, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import AdSense from "@/components/AdSense";
 
 interface RankingItem {
   id: string;
@@ -94,6 +95,10 @@ export default function OhaasaPage() {
           <p className="text-indigo-200 font-medium text-sm md:text-base break-keep px-4 flex items-center justify-center gap-2">
             <Sparkles className="w-4 h-4" /> {todayDate} 오늘의 행운 순위 <Sparkles className="w-4 h-4" />
           </p>
+        </div>
+
+        <div className="mb-8 w-full max-w-lg mx-auto">
+          <AdSense />
         </div>
 
         {isLoading ? (

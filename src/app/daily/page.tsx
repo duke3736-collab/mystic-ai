@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, Sparkles, Sun } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import AdSense from "@/components/AdSense";
 
 const ZODIAC_SIGNS = [
   { id: "aries", icon: "♈", nameKo: "양자리", nameEn: "Aries", date: "03.21 - 04.19" },
@@ -60,9 +61,13 @@ export default function DailyPage() {
         </div>
 
         <div className="bg-slate-900/60 backdrop-blur-xl border border-blue-500/30 rounded-3xl p-6 md:p-10 shadow-2xl relative">
-          <h2 className="text-center text-xl text-indigo-100 font-medium mb-8">
+          <h2 className="text-center text-xl text-indigo-100 font-medium mb-4">
             {t("daily.select")}
           </h2>
+
+          <div className="mb-8 w-full max-w-lg mx-auto">
+            <AdSense />
+          </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-10">
             {ZODIAC_SIGNS.map((sign) => (

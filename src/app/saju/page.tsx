@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, Sparkles, Moon, Sun, User, Calendar, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import AdSense from "@/components/AdSense";
 
 export default function SajuPage() {
   const { t, language } = useLanguage();
@@ -65,6 +66,10 @@ export default function SajuPage() {
           <p className="text-emerald-100 font-light text-base break-keep px-4">
             {t("saju.subtitle")}
           </p>
+        </div>
+
+        <div className="mb-8 w-full max-w-lg mx-auto">
+          <AdSense />
         </div>
 
         {/* Input Form */}
