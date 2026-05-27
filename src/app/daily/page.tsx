@@ -40,7 +40,7 @@ export default function DailyPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden flex flex-col items-center p-4 pt-20 pb-32">
+    <div className="relative min-h-screen overflow-x-hidden flex flex-col items-center p-4 pt-20 pb-48">
       {/* Mystical Background Gradients */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-950 via-slate-950 to-indigo-950 -z-10" />
       <div className="fixed top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none -z-10 mix-blend-screen" />
@@ -99,7 +99,7 @@ export default function DailyPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                className="fixed bottom-8 sm:bottom-12 left-0 right-0 px-4 z-50 pointer-events-none flex justify-center"
+                className="fixed bottom-24 sm:bottom-12 left-0 right-0 px-4 z-[100] pointer-events-none flex justify-center"
               >
                 <div className="w-full max-w-sm pointer-events-auto">
                   <button
