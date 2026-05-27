@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function POST() {
   try {
     const key = process.env.GEMINI_API_KEY || '';
     let url = `https://generativelanguage.googleapis.com/v1beta/models?key=${key}`;
