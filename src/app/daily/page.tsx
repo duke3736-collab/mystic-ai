@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Sparkles, Sun } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -28,6 +28,15 @@ export default function DailyPage() {
   const router = useRouter();
   const [selectedSign, setSelectedSign] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selectedSign && buttonRef.current) {
+      setTimeout(() => {
+        buttonRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 150);
+    }
+  }, [selectedSign]);
 
   const handleSubmit = () => {
     if (!selectedSign) return;
@@ -96,12 +105,13 @@ export default function DailyPage() {
           <AnimatePresence>
             {selectedSign && (
               <motion.div
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 100 }}
-                className="fixed bottom-6 sm:bottom-10 left-0 right-0 px-4 z-50 pointer-events-none flex justify-center"
+                ref={buttonRef}
+                initial={{ opacity: 0, height: 0, y: 20 }}
+                animate={{ opacity: 1, height: "auto", y: 0 }}
+                exit={{ opacity: 0, height: 0, y: 20 }}
+                className="w-full flex justify-center mt-8 overflow-hidden"
               >
-                <div className="w-full max-w-sm pointer-events-auto">
+                <div className="w-full max-w-sm">
                   <button
                     onClick={handleSubmit}
                     disabled={isAnalyzing}
