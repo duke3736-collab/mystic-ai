@@ -31,6 +31,15 @@ export function TopNavigation() {
 
   return (
     <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2 sm:gap-3">
+      <a
+        href="https://drive.weknews.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-500/20 backdrop-blur-md border border-orange-500/50 text-orange-300 hover:text-white hover:bg-orange-500/40 transition-colors text-sm font-bold"
+      >
+        🚗 {language === "ko" ? "드라이브 맵" : "Drive Map"}
+      </a>
+      
       <button
         onClick={toggleMusic}
         className="p-2 rounded-full bg-slate-900/50 backdrop-blur-md border border-slate-700/50 text-indigo-300 hover:text-white transition-colors"

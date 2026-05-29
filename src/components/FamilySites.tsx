@@ -24,15 +24,15 @@ export default function FamilySites() {
       icon: "📊",
       color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
     },
-    // {
-    //   nameKo: "커넥트 AI",
-    //   nameEn: "Connect AI",
-    //   descKo: "당신만을 위한 AI 비서 서비스",
-    //   descEn: "Your personal AI assistant service",
-    //   url: "https://ai.weknews.com",
-    //   icon: "🤖",
-    //   color: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-    // }
+    {
+      nameKo: "드라이브 맵",
+      nameEn: "Drive Map",
+      descKo: "전국 감성 드라이브 코스 총정리",
+      descEn: "Best drive courses in the country",
+      url: "https://drive.weknews.com",
+      icon: "🚗",
+      color: "bg-orange-500/20 text-orange-300 border-orange-500/30",
+    }
   ];
 
   return (
