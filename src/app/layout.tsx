@@ -68,6 +68,21 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-slate-950 text-slate-100">
+        {/* Google Analytics 4 */}
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=G-F45L019Z1D`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-F45L019Z1D');
+          `}
+        </Script>
+        
         <LanguageProvider>
           <TopNavigation />
           {children}
