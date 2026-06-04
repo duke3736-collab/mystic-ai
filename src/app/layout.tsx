@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   description: "타로카드, 평생 사주, 오늘의 운세를 AI가 분석해 드립니다. Get your free personalized AI Tarot reading, Saju (Four Pillars of Destiny), and Daily Horoscope.",
   keywords: [
     "운세", "무료운세", "타로", "사주", "오늘의운세", "AI운세", "사주팔자", "점성술", "별자리운세", "명리학", "오하아사",
+    "타로점", "무료 타로", "타로카드 보기", "사주 풀이", "평생 사주 무료", "연애운", "금전운", "오늘의 띠별 운세",
     "free tarot reading", "AI tarot", "saju", "four pillars of destiny", "daily horoscope", "astrology", "fortune telling", "mystic ai", "zodiac signs"
   ],
   manifest: "/manifest.json",
@@ -82,6 +83,20 @@ export default function RootLayout({
             gtag('config', 'G-F45L019Z1D');
           `}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Mystic AI - AI 타로, 사주, 오늘의 운세",
+              "url": "https://mystic.weknews.com",
+              "description": "타로카드, 평생 사주, 오늘의 운세를 AI가 실시간으로 정확하게 분석해 드립니다.",
+              "applicationCategory": "EntertainmentApplication",
+              "operatingSystem": "All"
+            })
+          }}
+        />
         
         <LanguageProvider>
           <TopNavigation />
